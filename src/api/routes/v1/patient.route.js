@@ -3,7 +3,7 @@ const validate = require('express-validation');
 const controller = require('../../controllers/patient.controller');
 const { authorize, ADMIN, LOGGED_USER } = require('../../middlewares/auth');
 const {
-  listPatients,
+  // listPatients,
   createPatient,
   replacePatient,
   updatePatient,
