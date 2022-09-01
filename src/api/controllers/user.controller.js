@@ -2,10 +2,6 @@ const httpStatus = require('http-status');
 const { omit } = require('lodash');
 const User = require('../models/user.model');
 
-/**
- * Load user and append to req.
- * @public
- */
 exports.load = async (req, res, next, id) => {
   try {
     const user = await User.get(id);
@@ -16,22 +12,10 @@ exports.load = async (req, res, next, id) => {
   }
 };
 
-/**
- * Get user
- * @public
- */
 exports.get = (req, res) => res.json(req.locals.user.transform());
 
-/**
- * Get logged in user info
- * @public
- */
 exports.loggedIn = (req, res) => res.json(req.user.transform());
 
-/**
- * Create new user
- * @public
- */
 exports.create = async (req, res, next) => {
   try {
     const user = new User(req.body);
@@ -43,10 +27,6 @@ exports.create = async (req, res, next) => {
   }
 };
 
-/**
- * Replace existing user
- * @public
- */
 exports.replace = async (req, res, next) => {
   try {
     const { user } = req.locals;
@@ -63,10 +43,6 @@ exports.replace = async (req, res, next) => {
   }
 };
 
-/**
- * Update existing user
- * @public
- */
 exports.update = (req, res, next) => {
   const ommitRole = req.locals.user.role !== 'admin' ? 'role' : '';
   const updatedUser = omit(req.body, ommitRole);
@@ -77,10 +53,6 @@ exports.update = (req, res, next) => {
     .catch((e) => next(User.checkDuplicateEmail(e)));
 };
 
-/**
- * Get user list
- * @public
- */
 exports.list = async (req, res, next) => {
   try {
     const users = await User.list(req.query);
@@ -91,10 +63,6 @@ exports.list = async (req, res, next) => {
   }
 };
 
-/**
- * Delete user
- * @public
- */
 exports.remove = (req, res, next) => {
   const { user } = req.locals;
 

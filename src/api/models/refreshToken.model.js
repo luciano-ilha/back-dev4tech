@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 const moment = require('moment-timezone');
 
-/**
- * Refresh Token Schema
- * @private
- */
 const refreshTokenSchema = new mongoose.Schema({
   token: {
     type: String,
@@ -26,13 +22,6 @@ const refreshTokenSchema = new mongoose.Schema({
 });
 
 refreshTokenSchema.statics = {
-
-  /**
-   * Generate a refresh token object and saves it into the database
-   *
-   * @param {User} user
-   * @returns {RefreshToken}
-   */
   generate(user) {
     const userId = user._id;
     const userEmail = user.email;
@@ -47,8 +36,5 @@ refreshTokenSchema.statics = {
 
 };
 
-/**
- * @typedef RefreshToken
- */
 const RefreshToken = mongoose.model('RefreshToken', refreshTokenSchema);
 module.exports = RefreshToken;

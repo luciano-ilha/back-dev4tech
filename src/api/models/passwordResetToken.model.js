@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 const moment = require('moment-timezone');
 
-/**
- * Refresh Token Schema
- * @private
- */
 const passwordResetTokenSchema = new mongoose.Schema({
   resetToken: {
     type: String,
@@ -26,12 +22,6 @@ const passwordResetTokenSchema = new mongoose.Schema({
 });
 
 passwordResetTokenSchema.statics = {
-  /**
-   * Generate a reset token object and saves it into the database
-   *
-   * @param {User} user
-   * @returns {ResetToken}
-   */
   async generate(user) {
     const userId = user._id;
     const userEmail = user.email;
@@ -50,8 +40,5 @@ passwordResetTokenSchema.statics = {
   },
 };
 
-/**
- * @typedef RefreshToken
- */
 const PasswordResetToken = mongoose.model('PasswordResetToken', passwordResetTokenSchema);
 module.exports = PasswordResetToken;
