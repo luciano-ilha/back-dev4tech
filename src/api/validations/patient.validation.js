@@ -2,7 +2,6 @@ const Joi = require('joi');
 const Patient = require('../models/patient.model');
 
 module.exports = {
-
   // GET /v1/patients
   listPatients: {
     query: {

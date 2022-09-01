@@ -8,9 +8,6 @@ const uuidv4 = require('uuid/v4');
 const APIError = require('../errors/api-error');
 const { env, jwtSecret, jwtExpirationInterval } = require('../../config/vars');
 
-/**
-* User Roles
-*/
 const roles = ['user', 'admin'];
 
 const userSchema = new mongoose.Schema({
