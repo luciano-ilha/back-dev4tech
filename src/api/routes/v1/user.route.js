@@ -17,7 +17,7 @@ const router = express.Router();
 router.param('userId', controller.load);
 
 router
-  .route('/:workerId/patients')
+  .route('/patients')
   .get(authorize(ADMIN), validate(listUsers), controller.list);
 
 router
