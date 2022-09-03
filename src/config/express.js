@@ -11,10 +11,6 @@ const { logs } = require('./vars');
 const strategies = require('./passport');
 const error = require('../api/middlewares/error');
 
-/**
-* Express instance
-* @public
-*/
 const app = express();
 
 // request logging. dev: console | production: file
