@@ -18,7 +18,10 @@ router.param('userId', controller.load);
 
 router
   .route('/')
-  .get(authorize(ADMIN), validate(listUsers), controller.list)
+  .get(authorize(ADMIN), validate(listUsers), controller.list);
+
+router
+  .route('/:workerId/patients')
   .post(authorize(ADMIN), validate(createUser), controller.create);
 
 router
