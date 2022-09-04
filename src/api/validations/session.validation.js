@@ -1,7 +1,6 @@
 const Joi = require('joi');
 
 module.exports = {
-  // GET /v1/sessions
   listSessions: {
     query: {
       page: Joi.number().min(1),
@@ -10,43 +9,43 @@ module.exports = {
       patientId: Joi.string(),
       patientName: Joi.string(),
       sessionDescription: Joi.string(),
-      sessionDate: Joi.date(),
+      sessionDate: Joi.string(),
     },
   },
-
-  // POST /v1/sessions
+  showSessions: {
+    query: {
+      id: Joi.string().required(),
+      workerId: Joi.string().required(),
+    },
+  },
   createSession: {
     body: {
       workerId: Joi.string().required(),
       patientId: Joi.string().required(),
       patientName: Joi.string().required(),
       sessionDescription: Joi.string().required(),
-      sessionDate: Joi.date().required(),
+      sessionDate: Joi.string().required(),
     },
   },
-
-  // PUT /v1/sessions/:sessionId
   replaceSession: {
     body: {
       workerId: Joi.string().required(),
       patientId: Joi.string().required(),
       patientName: Joi.string().required(),
       sessionDescription: Joi.string().required(),
-      sessionDate: Joi.date().required(),
+      sessionDate: Joi.string().required(),
     },
     params: {
       sessionId: Joi.string().regex(/^[a-fA-F0-9]{24}$/).required(),
     },
   },
-
-  // PATCH /v1/sessions/:sessionId
   updateSession: {
     body: {
       workerId: Joi.string(),
       patientId: Joi.string(),
       patientName: Joi.string(),
       sessionDescription: Joi.string(),
-      sessionDate: Joi.date().required(),
+      sessionDate: Joi.string().required(),
     },
     params: {
       sessionId: Joi.string().regex(/^[a-fA-F0-9]{24}$/).required(),
