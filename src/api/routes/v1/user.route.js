@@ -11,17 +11,11 @@ const {
 
 const router = express.Router();
 
-/**
- * Load user when API with userId route parameter is hit
- */
 router.param('userId', controller.load);
 
 router
   .route('/patients')
-  .get(authorize(ADMIN), validate(listUsers), controller.list);
-
-router
-  .route('/:workerId/patients')
+  .get(authorize(ADMIN), validate(listUsers), controller.list)
   .post(authorize(ADMIN), validate(createUser), controller.create);
 
 router

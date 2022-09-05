@@ -148,7 +148,7 @@ userSchema.statics = {
   },
 
   list({
-    id, page = 1, perPage = 30, name, email, role,
+    id, page = 1, perPage = 10, name, email, role,
   }) {
     const options = omitBy({ name, email, role }, isNil);
 

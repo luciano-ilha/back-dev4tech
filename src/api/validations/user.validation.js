@@ -12,7 +12,7 @@ module.exports = {
       phone: Joi.string(),
       email: Joi.string().email(),
       address: Joi.string(),
-      workerId: Joi.string(),
+      workerId: Joi.string().required(),
       role: Joi.string().valid(User.roles),
     },
   },

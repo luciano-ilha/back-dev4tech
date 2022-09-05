@@ -29,19 +29,6 @@ const sessionSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-sessionSchema.method({
-  transform() {
-    const transformed = {};
-    const fields = ['workerId', 'patientId', 'patientName', 'sessionDescription', 'sessionDate'];
-
-    fields.forEach((field) => {
-      transformed[field] = this[field];
-    });
-
-    return transformed;
-  },
-});
-
 sessionSchema.statics = {
   async get(id) {
     let session;
@@ -58,12 +45,14 @@ sessionSchema.statics = {
       status: httpStatus.NOT_FOUND,
     });
   },
+
   list({
-    page = 1, perPage = 30, patientName, sessionDate,
+    workerId, page = 1, perPage = 10, patientName, sessionDate,
   }) {
     const options = omitBy({ patientName, sessionDate }, isNil);
 
     return this.find(options)
+      .find({ workerId })
       .sort({ sessionDate: -1 })
       .skip(perPage * (page - 1))
       .limit(perPage)
