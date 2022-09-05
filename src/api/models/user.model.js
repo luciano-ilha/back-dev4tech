@@ -148,12 +148,12 @@ userSchema.statics = {
   },
 
   list({
-    id, page = 1, perPage = 10, name, email, role,
+    workerId, page = 1, perPage = 10, name, email, role,
   }) {
     const options = omitBy({ name, email, role }, isNil);
 
     return this.find(options)
-      .find({ workerId: id })
+      .find({ workerId })
       .sort({ createdAt: -1 })
       .skip(perPage * (page - 1))
       .limit(perPage)
